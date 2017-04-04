@@ -14,11 +14,15 @@ For maximum laziness the script supports a wide array of date formats, such as "
 
 ## Installation
 
-Put the script anywhere, and add a line to your crontab as follows:
+Put the script anywhere, and change the constants at the top to the appropriate email addresses and paths.
+
+Next add a line to your crontab as follows:
 
 ```
-0 0 * * *  /path/to/script/upcoming.rb
+0 0 * * *  /path/to/script/upcoming.rb -d
 ```
+
+The script will now be run daily by cron in daemon mode, which emails current events out and removes them from the update queue.
 
 ## Why does this exist? Why not use one of the many other calendar systems available?
 
