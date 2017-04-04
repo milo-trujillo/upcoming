@@ -26,12 +26,14 @@ class Event
 	end
 
 	def send
+		date = @date
+		description = @description
 		Mail.deliver do
-			deliver_method :sendmail
+			delivery_method :sendmail
 			to Destination
 			from From
-			subject "Upcoming event '#{@description}'"
-			body "#{@date}:\n\n#{@description}"
+			subject "Upcoming event '#{description}'"
+			body "#{dateString(date)}:\n\n#{description}"
 		end
 	end
 end
@@ -81,7 +83,7 @@ def notifyEvents()
 	f.flock(File::LOCK_EX)
 	events = YAML.load(f.read)
 	for event in events
-		if( event.date == today )
+		if( dateString(event.date) == today )
 			notify << event
 		else
 			store << event
