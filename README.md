@@ -10,7 +10,7 @@ $ upcoming.rb 4/11 "Jazz performance"
 
 Then, on 4/11, the system will email you a reminder about the Jazz performance.
 
-For maximum laziness the script supports a wide array of date formats, such as "Tomorrow", or "Tuesday".
+For maximum laziness the script supports a wide array of date formats, such as "March 5th", or "Tuesday".
 
 ## Installation
 
@@ -23,6 +23,8 @@ Next add a line to your crontab as follows:
 ```
 
 The script will now be run daily by cron in daemon mode, which emails current events out and removes them from the update queue.
+
+This script has a dependency on the 'mail' gem.
 
 ## Why does this exist? Why not use one of the many other calendar systems available?
 
