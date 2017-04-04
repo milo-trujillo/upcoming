@@ -45,7 +45,7 @@ end
 
 def addEvent(event)
 	events = []
-	f = File.open(CalFile, "w+")
+	f = File.open(CalFile, "r+")
 	f.flock(File::LOCK_EX)
 	if( f.size > 0 )
 		events = YAML.load(f.read())
@@ -84,7 +84,7 @@ def notifyEvents()
 	end
 	notify = []
 	store = []
-	f = File.open(CalFile, "w+")
+	f = File.open(CalFile, "r+")
 	f.flock(File::LOCK_EX)
 	events = YAML.load(f.read)
 	for event in events
