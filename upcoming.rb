@@ -2,13 +2,12 @@
 require 'optparse'
 require 'date'
 require 'yaml'
-require 'net/smtp'
+require 'mail'
 
 Version = 1.0
 CalFile = ENV["HOME"] + "/.upcoming"
 From = "example@example.com"
 Destination = "example@example.com"
-MailServer = "localhost"
 
 def dateString(date)
 	return "#{date.mon}/#{date.mday}/#{date.year}"
@@ -27,18 +26,12 @@ class Event
 	end
 
 	def send
-		message = <<MESSAGE_END
-From: <#{From}>
-To: <#{Destination}>
-Subject: Upcoming event '#{@description}'
-
-#{@date}:
-
-#{@description}
-MESSAGE_END
-
-		Net::SMTP.start(MailServer) do |smtp|
-			smtp.send_message message, From, Destination
+		Mail.deliver do
+			deliver_method :sendmail
+			to Destination
+			from From
+			subject "Upcoming event '#{@description}'"
+			body "#{@date}:\n\n#{@description}"
 		end
 	end
 end
