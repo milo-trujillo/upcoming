@@ -47,6 +47,10 @@ end
 
 def addEvent(event)
 	events = []
+	# Create blank file if necessary
+	if( not File.exists?(CalFile) )
+		File.write(CalFile, "")
+	end
 	f = File.open(CalFile, "r+")
 	f.flock(File::LOCK_EX)
 	if( f.size > 0 )
