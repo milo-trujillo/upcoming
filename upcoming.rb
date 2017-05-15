@@ -19,6 +19,13 @@ class Event
 	def initialize(date, description)
 		@date = Date.parse(date)
 		@description = description
+
+		# If user entered "Monday", make sure we use *next* Monday
+		# not *previous* Monday.
+		now = Date.parse(Time.now.strftime("%Y/%m/%d"))
+		if( now > @date )
+			@date += 7
+		end
 	end
 
 	def to_s
