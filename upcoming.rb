@@ -17,7 +17,11 @@ class Event
 	attr_reader :date, :description
 
 	def initialize(date, description)
-		@date = Date.parse(date)
+		if( date.downcase == "tomorrow" )
+			@date = Date.parse(Time.now.strftime("%Y/%m/%d")) + 1
+		else
+			@date = Date.parse(date)
+		end
 		@description = description
 
 		# If user entered "Monday", make sure we use *next* Monday
