@@ -129,6 +129,10 @@ parser = OptionParser.new do |opts|
 	opts.on("-p", "--print", "Print currently stored events") do |p|
 		options[:print] = true
 	end
+
+	opts.on("-s", "--show", "Show currently stored events (same as -p)") do |s|
+		options[:print] = true
+	end
 end.parse!
 
 if( ARGV.size != 0 and ARGV.size != 2 )
