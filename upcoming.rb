@@ -98,7 +98,7 @@ def notifyEvents()
 	f.flock(File::LOCK_EX)
 	events = YAML.load(f.read)
 	for event in events
-		if( dateString(event.date) == today )
+		if( dateString(event.date) <= today )
 			notify << event
 		else
 			store << event
